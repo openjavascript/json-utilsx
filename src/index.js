@@ -159,7 +159,7 @@ function isEmpty(obj) {
  * @method jsonEqual
  */
 function jsonEqual( json1, json2 ){
-    return JSON.stringify( json1, null, 1 ) == JSON.stringify( json2, null, 2 );
+    return JSON.stringify( json1, null, 1 ) == JSON.stringify( json2, null, 1 );
 }
 module.exports = {
     jsonDelData: jsonDelData,
