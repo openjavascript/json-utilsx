@@ -11,7 +11,7 @@
     console.log( jsonInData( { 'l1': { 'l3': 1 } }, 'l1.l2' ) ) ; //return false
 </pre>
  */
-function jsonInData( data, keypath, delimiter = '.' ) {
+export function jsonInData( data, keypath, delimiter = '.' ) {
     let r, tmp = data;
     keypath = keypath || [];
     typeof keypath == 'string' && ( keypath = keypath.split( delimiter ) );
@@ -44,7 +44,7 @@ function jsonInData( data, keypath, delimiter = '.' ) {
     console.log( jsonSetData( data, 'val1', 'l4.l5', 1 ) );
 </pre>
  */
-function jsonSetData( data, val, keypath, appendData = 0, delimiter = '.' ) {
+export function jsonSetData( data, val, keypath, appendData = 0, delimiter = '.' ) {
     let tmp = data, ignore;
     keypath = keypath || [];
     typeof keypath == 'string' && ( keypath = keypath.split( delimiter ) );
@@ -82,7 +82,7 @@ function jsonSetData( data, val, keypath, appendData = 0, delimiter = '.' ) {
     console.log( jsonDelData( data, 'l1.l2.k3') ); //  { "l1": {  "l2": { "k2": 2 }  } }
 </pre>
  */
-function jsonDelData( data, keypath, delimiter = '.' ) {
+export function jsonDelData( data, keypath, delimiter = '.' ) {
     let tmp = data;
     keypath = keypath || [];
     typeof keypath == 'string' && ( keypath = keypath.split( delimiter ) );
@@ -105,19 +105,11 @@ function jsonDelData( data, keypath, delimiter = '.' ) {
  * @return {boolean}
  * @method isEmpty
  */
-function isEmpty(obj) {
+export function isEmpty(obj) {
    for (var x in obj) { if (obj.hasOwnProperty(x))  return false; }
    return true;
 }
 
-function jsonEqual( json1, json2 ){
+export function jsonEqual( json1, json2 ){
     return JSON.stringify( json1, null, 1 ) == JSON.stringify( json2, null, 2 );
 }
-
-exports.default = {
-    jsonDelData     : jsonDelData
-    , jsonInData    : jsonInData
-    , jsonSetData   : jsonSetData
-    , jsonEqual     : jsonEqual
-    , isEmpty       : isEmpty
-};
