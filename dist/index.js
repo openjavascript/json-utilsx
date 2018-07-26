@@ -114,6 +114,14 @@ function isEmpty(obj) {
     return true;
 }
 
-export default test = {
-    test: 1
+function jsonEqual(json1, json2) {
+    return JSON.stringify(json1, null, 1) == JSON.stringify(json2, null, 2);
+}
+
+exports.default = {
+    jsonDelData: jsonDelData,
+    jsonInData: jsonInData,
+    jsonSetData: jsonSetData,
+    jsonEqual: jsonEqual,
+    isEmpty: isEmpty
 };
