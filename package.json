@@ -1,0 +1,26 @@
+{
+  "name": "json-utilsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "babel -w src/ -d dist/",
+    "build": "babel src/ -d dis"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openjavascript/json-utilsx.git"
+  },
+  "author": "suches <908202921@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openjavascript/json-utilsx/issues"
+  },
+  "homepage": "https://github.com/openjavascript/json-utilsx#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "path": "^0.12"
+  }
+}
