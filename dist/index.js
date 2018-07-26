@@ -102,6 +102,50 @@ function jsonDelData(data, keypath, delimiter = '.') {
     return data;
 }
 /**
+ * 从一个属性路径，获取json数据
+ * @param {Object}      data        要判断的是否存在属性值的JSON
+ * @param {string}      keypath     属性路径
+ * @param {boolean}     appendData  如果父节点不存在是否添加父节点，默认=0(不添加)
+ * @param {string}      delimiter   属性路径的分隔符，默认: "."
+ * @return {*}     
+ * @method jsonGetData
+ * @example
+<pre>
+    let data = { "l1": {  "l2": { "k1": 1, "k2": 2 }  } };
+    
+    console.log( jsonGetData( data, 'l1') )
+    console.log( jsonGetData( data, 'l1.l2') )
+    console.log( jsonGetData( data, 'l1.l3') )
+</pre>
+ */
+function jsonGetData(data, keypath, appendData = 0, delimiter = '.') {
+    let tmp = data,
+        ignore,
+        r;
+    keypath = keypath || [];
+    typeof keypath == 'string' && (keypath = keypath.split(delimiter));
+
+    if (!(data && keypath.length)) return r;
+    keypath.slice(0, -1).map(val => {
+        if (val && tmp && val in tmp) {
+            tmp = tmp[val];
+        } else {
+            if (appendData) {
+                tmp[val] = {};
+                tmp = tmp[val];
+            } else {
+                ignore = 1;
+            }
+        }
+    });
+    if (!ignore && tmp && keypath && keypath.length) {
+        r = tmp[keypath.slice(-1)];
+    }
+
+    return r;
+}
+
+/**
  * 判断一个object是否空对象(没有任何属性值)
  * @param {Object}      obj     要判断的obejct
  * @return {boolean}
@@ -113,15 +157,21 @@ function isEmpty(obj) {
     }
     return true;
 }
-
+/**
+ * 对比2个JSON对象是否相等
+ * @param {Object}      json1   要判断的obejct
+ * @param {Object}      json2   要判断的obejct
+ * @return {boolean}
+ * @method jsonEqual
+ */
 function jsonEqual(json1, json2) {
     return JSON.stringify(json1, null, 1) == JSON.stringify(json2, null, 2);
 }
-
 module.exports = {
     jsonDelData: jsonDelData,
     jsonInData: jsonInData,
     jsonSetData: jsonSetData,
+    jsonGetData: jsonGetData,
     jsonEqual: jsonEqual,
     isEmpty: isEmpty
 };
