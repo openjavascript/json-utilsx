@@ -114,6 +114,4 @@ function isEmpty(obj) {
     return true;
 }
 
-export default test = {
-    test: 1
-};
+export default jsonDelData;
