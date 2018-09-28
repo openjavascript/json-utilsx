@@ -161,7 +161,17 @@ function isEmpty(obj) {
 function jsonEqual( json1, json2 ){
     return JSON.stringify( json1, null, 1 ) == JSON.stringify( json2, null, 1 );
 }
+/**
+ * 复制JSON对象
+ * @param {Object}      json   要复制的json
+ * @return {Object}
+ * @method clone
+ */
+function clone( json ){
+    return JSON.parse( JSON.stringify( json ) );
+}
 module.exports = {
+    clone: clone,
     jsonDelData: jsonDelData,
     jsonInData: jsonInData,
     jsonSetData: jsonSetData,
